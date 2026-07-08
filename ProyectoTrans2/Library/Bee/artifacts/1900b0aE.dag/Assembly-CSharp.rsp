@@ -463,6 +463,10 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.4.0f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/Scripts/DialogSystem/CutSceneSystem.cs"
+"Assets/Scripts/DialogSystem/DialogActivator.cs"
+"Assets/Scripts/DialogSystem/DialogLine.cs"
+"Assets/Scripts/DialogSystem/DialogUi.cs"
 "Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic

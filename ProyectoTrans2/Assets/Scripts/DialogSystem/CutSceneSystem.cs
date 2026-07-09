@@ -1,22 +1,26 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CutSceneSystem : MonoBehaviour
 {
-    [SerializeField] DialogUi dialogui;
+    [SerializeField] DialogUi dialogUIPrefab;
+    private DialogUi dialogui;
     public static CutSceneSystem instance;
 
     private DialogActivator currentScene;
     private int currentLine;
-
     private bool isPlaying;
     private bool input;
+
 
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+            dialogui = Instantiate(dialogUIPrefab);
+            DontDestroyOnLoad(dialogui.gameObject);
         }
         else
         {
@@ -28,8 +32,10 @@ public class CutSceneSystem : MonoBehaviour
     {
         if (!isPlaying || !input)
             return;
-        if(Input.GetMouseButtonDown(0))
+
+        if(Mouse.current.leftButton.wasPressedThisFrame)
         {
+            Debug.Log("Next line pressed");
             NextLine();
         }
     }
@@ -47,17 +53,26 @@ public class CutSceneSystem : MonoBehaviour
     private void PlayCurrentLine()
     {
         DialogLine line = currentScene.lines[currentLine];
+        Debug.Log("Showing index: " + currentLine + " Text: " + line.dialog);
         Execute(line);
     }
 
     private void Execute(DialogLine line)
     {
+        if (dialogui == null)
+        {
+            Debug.LogError("DialogUI is missing!");
+            return;
+        }
         dialogui.ShowDialog(line.characterName,line.dialog,line.portrait);
         input = true;
     }
 
     private void NextLine()
     {
+        if (dialogui.FinishingTyping())
+            return;
+
         input = false;
         currentLine++;
 

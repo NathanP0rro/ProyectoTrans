@@ -9,14 +9,15 @@ public class DialogActivator : MonoBehaviour
 
     private void Start()
     {
-        if(playOnStart)
+        Debug.Log("DialogActivator Start");
+        if (playOnStart)
         {
             Activate();
         }
     }
     private void Activate()
     {
-
+        CutSceneSystem.instance.StartDialog(this);
     }
 }
 
